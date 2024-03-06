@@ -1,23 +1,15 @@
-import TileObject from "./tile_objects";
+import * as p5 from "p5";
 
-class GridTitle {
+class GridTile {
   private _x: number;
   private _y: number;
-  private _image: string;
+  private _image: p5.Image;
   private _isSolid: boolean;
-  private _tileObject: TileObject | null;
 
-  constructor(
-    x: number,
-    y: number,
-    image: string,
-    isSolid: boolean,
-    tileObject: TileObject | null
-  ) {
+  constructor(x: number, y: number, image: p5.Image, isSolid: boolean) {
     this._x = x;
     this._y = y;
     this._image = image;
-    this._tileObject = tileObject;
     this._isSolid = isSolid;
   }
 
@@ -25,31 +17,27 @@ class GridTitle {
     return { x: this._x, y: this._y };
   }
 
-  public get image(): string {
+  public get image(): p5.Image {
     return this._image;
   }
 
   public get isSolid(): boolean {
     return this._isSolid;
   }
-
-  public get tileObject(): TileObject | null {
-    return this._tileObject;
-  }
 }
 
 class Grid {
-  private _gridTiles: GridTitle[][];
+  private _gridTiles: GridTile[][];
   public static tileSize: number = 50;
 
-  constructor() {
-    this._gridTiles = [];
+  constructor(gridTiles: GridTile[][]) {
+    this._gridTiles = gridTiles;
   }
 
-  public get gridTiles(): GridTitle[][] {
+  public get gridTiles(): GridTile[][] {
     return this._gridTiles;
   }
 }
 
 export default Grid;
-export { GridTitle };
+export { GridTile };
