@@ -1,0 +1,26 @@
+{
+  "tiles": [
+    {
+      "id": "0",
+      "type": "start"
+    },
+    {
+      "id": "1",
+      "type": "path"
+    },
+    {
+      "id": "2",
+      "type": "wall"
+    }
+  ],
+  "items": [
+    {
+      "id": "0",
+      "type": "key"
+    },
+    {
+      "id": "1",
+      "type": "lock"
+    }
+  ]
+}
