@@ -1,3 +1,6 @@
+import Game from "../game/game";
+import Grid from "./grid";
+
 enum PlayerState {
   IDLE = "player_idle",
   UP = "player_up",
@@ -17,11 +20,19 @@ class Player {
     this._state = PlayerState.IDLE;
   }
 
-  public addToX(val: number): void {
+  public moveX(val: number, grid: Grid): void {
+    const nextX = this._posX + val;
+    if (nextX < 0 || nextX >= Game.gameSize) return;
+    if (grid.getTileAt(nextX, this._posY).isSolid) return;
+
     this._posX += val;
   }
 
-  public addToY(val: number): void {
+  public moveY(val: number, grid: Grid): void {
+    const nextY = this._posY + val;
+    if (nextY < 0 || nextY >= Game.gameSize) return;
+    if (grid.getTileAt(this._posX, nextY).isSolid) return;
+
     this._posY += val;
   }
 

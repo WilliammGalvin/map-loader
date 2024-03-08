@@ -13,7 +13,7 @@ export const sketch = (p: p5) => {
   };
 
   p.setup = () => {
-    p.createCanvas(500, 500);
+    p.createCanvas(Game.gameSize, Game.gameSize);
   };
 
   p.draw = () => {

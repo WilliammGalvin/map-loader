@@ -34,6 +34,10 @@ class Grid {
     this._gridTiles = gridTiles;
   }
 
+  public getTileAt(x: number, y: number): GridTile {
+    return this._gridTiles[y / Grid.tileSize][x / Grid.tileSize];
+  }
+
   public get gridTiles(): GridTile[][] {
     return this._gridTiles;
   }
