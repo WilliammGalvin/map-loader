@@ -1,12 +1,15 @@
 import * as p5 from "p5";
-import { loadMap } from "./map_loader";
-import Grid from "./models/grid";
+import { loadMap } from "./game/map_loader";
+import Game from "./game/game";
 
 export const sketch = (p: p5) => {
-  let grid: Grid;
+  let game: Game;
 
   p.preload = async () => {
-    grid = await loadMap(p, "map1");
+    let mapData = await loadMap(p, "map1");
+    game = new Game(mapData.grid, mapData.player);
+
+    await game.preload(p);
   };
 
   p.setup = () => {
@@ -15,18 +18,11 @@ export const sketch = (p: p5) => {
 
   p.draw = () => {
     p.background(220);
+    game.drawGame(p);
+  };
 
-    for (const row of grid.gridTiles) {
-      for (const tile of row) {
-        p.image(
-          tile.image,
-          tile.pos.x,
-          tile.pos.y,
-          Grid.tileSize,
-          Grid.tileSize
-        );
-      }
-    }
+  p.keyPressed = () => {
+    game.movePlayer(p);
   };
 };
 
